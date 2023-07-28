@@ -32,6 +32,7 @@ namespace Bonsai.Zyre
         /// Gets or sets the interface for the network.
         /// </summary>
         [Description("The local network interface to use for discovery.")]
+        [TypeConverter(typeof(InterfaceConverter))]
         public string Interface { get; set; }
 
         /// <summary>
