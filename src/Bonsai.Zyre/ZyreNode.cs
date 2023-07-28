@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Reactive.Disposables;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using System.Net.NetworkInformation;
 
 namespace Bonsai.Zyre
 {
@@ -33,7 +34,7 @@ namespace Bonsai.Zyre
         /// </summary>
         [Description("The local network interface to use for discovery.")]
         [TypeConverter(typeof(InterfaceConverter))]
-        public string Interface { get; set; }
+        public NetworkInterface Interface { get; set; }
 
         /// <summary>
         /// Creates a Zyre node that joins a network group and listens for events from other group peers.
@@ -62,7 +63,7 @@ namespace Bonsai.Zyre
             {
                 NetMQZyre.Zyre zyre = new NetMQZyre.Zyre(Name);
                 zyre.Join(Group);
-                zyre.SetInterface(Interface);
+                zyre.SetInterface(Interface.Name);
                 zyre.Start();
 
                 if (source != null)
