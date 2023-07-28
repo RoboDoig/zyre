@@ -41,7 +41,7 @@ namespace Bonsai.Zyre
 
         public override StandardValuesCollection GetStandardValues(ITypeDescriptorContext context)
         {
-            NetworkInterface[] networkInterfaces = NetworkInterface.GetAllNetworkInterfaces();
+            NetworkInterface[] networkInterfaces = NetworkInterface.GetAllNetworkInterfaces().Where(n => n.OperationalStatus == OperationalStatus.Up).ToArray();
 
             return new StandardValuesCollection(networkInterfaces);
         }

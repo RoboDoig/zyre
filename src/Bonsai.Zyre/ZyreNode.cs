@@ -63,7 +63,7 @@ namespace Bonsai.Zyre
             {
                 NetMQZyre.Zyre zyre = new NetMQZyre.Zyre(Name);
                 zyre.Join(Group);
-                zyre.SetInterface(Interface.Name);
+                zyre.SetInterface(InterfaceUtils.GetIPAddress(Interface));
                 zyre.Start();
 
                 if (source != null)
